@@ -4,6 +4,7 @@ const User = require("./userModel");
 const Post = require("./postsModel");
 
 const Comment = sequelize.define("comment", {
+
   content: {
     type: DataTypes.STRING,
     allowNull: false,
