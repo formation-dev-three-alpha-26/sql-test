@@ -54,11 +54,25 @@ const loginAccount = async (req, res) => {
       verifuser.password,
     );
 
-    if (passwordCorrect) {
-      return res.status(201).send("welcome to ur account");
-    } else {
-      return res.status(404).send("password uncorrect");
-    }
+
+   if (!passwordCorrect) {
+       return res.status(404).send("password uncorrect");
+   
+    } 
+
+  const token = jwt.sign(
+      { id: verifuser.id, email: verifuser.email },
+
+      process.env.JWT_SECRET,
+    );
+
+
+        res.status(201).json({
+      email: verifuser.email,
+      token: token,
+    });
+     
+    
   } catch (error) {
     res.status(500).send(error.message);
   }
