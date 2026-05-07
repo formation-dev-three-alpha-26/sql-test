@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 // ("token :  carte d'indintité  ");
+
+
 const createAccount = async (req, res) => {
   try {
     const verifuser = await User.findOne({ where: { email: req.body.email } });
@@ -54,25 +56,20 @@ const loginAccount = async (req, res) => {
       verifuser.password,
     );
 
+    if (!passwordCorrect) {
+      return res.status(404).send("password uncorrect");
+    }
 
-   if (!passwordCorrect) {
-       return res.status(404).send("password uncorrect");
-   
-    } 
-
-  const token = jwt.sign(
+    const token = jwt.sign(
       { id: verifuser.id, email: verifuser.email },
 
       process.env.JWT_SECRET,
     );
 
-
-        res.status(201).json({
+    res.status(201).json({
       email: verifuser.email,
       token: token,
     });
-     
-    
   } catch (error) {
     res.status(500).send(error.message);
   }
