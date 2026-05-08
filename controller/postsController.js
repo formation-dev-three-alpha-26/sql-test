@@ -2,9 +2,9 @@ const Post = require("../models/postsModel");
 
 const createPost = async (req, res) => {
   try {
-    await Post.create(req.body);
+  let newpost =  await Post.create(req.body);
 
-    res.status(201).send("posts created");
+    res.status(201).json(newpost)
   } catch (error) {
     res.status(500).send(error.message);
   }

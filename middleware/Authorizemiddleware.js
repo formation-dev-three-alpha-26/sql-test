@@ -16,3 +16,9 @@ const autorize = (req, res, next) => {
 };
 
 module.exports = autorize;
+
+
+
+
+
+

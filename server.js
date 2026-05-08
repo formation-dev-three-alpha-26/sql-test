@@ -1,14 +1,16 @@
 const express = require("express");
 require("./config");
 const server = express();
+const cors = require("cors")
 const postroute = require("./routes/postsRoute")
 const userroute = require("./routes/userRoute")
 const commentroute = require("./routes/commentRoute")
-const autorize = require("./middleware/Authorizemiddleware")
+// const autorize = require("./middleware/Authorizemiddleware")
 server.use(express.json())
+server.use(cors())
 
 
-server.use("/api/posts" , autorize ,   postroute)
+server.use("/api/posts"  , postroute)
 server.use("/api/users" , userroute)
 server.use("/api/comment" , commentroute)
 

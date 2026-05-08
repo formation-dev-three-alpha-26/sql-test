@@ -18,6 +18,7 @@ const createAccount = async (req, res) => {
 
     const newuser = await User.create({
       email: req.body.email,
+      username: req.body.username , 
       password: password,
     });
 
@@ -33,7 +34,7 @@ const createAccount = async (req, res) => {
     );
 
     res.status(201).json({
-      email: newuser.email,
+      user: {email : newuser.email, id : newuser.id} , 
       token: token,
     });
   } catch (error) {
@@ -74,5 +75,7 @@ const loginAccount = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+
 
 module.exports = { createAccount, loginAccount };
