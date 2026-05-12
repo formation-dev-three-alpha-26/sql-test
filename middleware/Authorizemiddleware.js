@@ -11,7 +11,7 @@ const autorize = (req, res, next) => {
 
     next();
   } catch (error) {
-    return res.send("token invalide");
+    return res.status(500).send("token invalide");
   }
 };
 

@@ -34,7 +34,7 @@ const createAccount = async (req, res) => {
     );
 
     res.status(201).json({
-      user: {email : newuser.email, id : newuser.id} , 
+      user: {username : newuser.username, id : newuser.id} , 
       token: token,
     });
   } catch (error) {
@@ -68,7 +68,7 @@ const loginAccount = async (req, res) => {
     );
 
     res.status(201).json({
-      email: verifuser.email,
+      user: {username : verifuser.username, id : verifuser.id} , 
       token: token,
     });
   } catch (error) {
